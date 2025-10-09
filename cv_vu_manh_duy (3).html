@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CV Của Vu Manh Duy</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background: linear-gradient(270deg, rgba(0,198,255,0.8), rgba(0,255,135,0.8)), url('https://www.transparenttextures.com/patterns/debut-light.png');
+            background-blend-mode: overlay;
+            background-size: 400% 400%, 200px 200px;
+            animation: gradientBG 8s ease infinite;
+            color: #fff;
+            margin: 0;
+            padding: 0;
+            animation: fadeIn 1s ease-in;
+            position: relative;
+            overflow: hidden;
+        }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        audio { display: none; }
+
+        .heart {
+            position: fixed;
+            width: 12px;
+            height: 12px;
+            background: red;
+            transform: rotate(45deg);
+            opacity: 0;
+            animation: floatHeart 10s linear infinite;
+            z-index: 0;
+        }
+        .heart::before, .heart::after {
+            content: '';
+            position: absolute;
+            width: 12px;
+            height: 12px;
+            background: red;
+            border-radius: 50%;
+        }
+        .heart::before { top: -6px; left: 0; }
+        .heart::after { left: 6px; top: 0; }
+
+        @keyframes floatHeart {
+            0% { transform: translate(0, 0) rotate(0deg); opacity: 0; }
+            10% { opacity: 1; }
+            50% { transform: translate(calc(100vw * var(--x-dir)), calc(-400px * var(--y-dir))) rotate(180deg); }
+            100% { transform: translate(calc(100vw * var(--x-dir) * -1), calc(-800px * var(--y-dir))) rotate(360deg); opacity: 0; }
+        }
+
+        .floating-text {
+            position: fixed;
+            font-size: 18px;
+            color: #ff8fb1;
+            font-weight: bold;
+            opacity: 0;
+            animation: floatText 15s linear infinite;
+            text-shadow: 0 0 10px rgba(255, 182, 193, 0.8);
+            z-index: 0;
+        }
+        @keyframes floatText {
+            0% { transform: translate(0, 0); opacity: 0; }
+            20% { opacity: 1; }
+            50% { transform: translate(calc(80vw * var(--x-dir)), calc(-300px * var(--y-dir))); }
+            100% { transform: translate(calc(80vw * var(--x-dir) * -1), calc(-700px * var(--y-dir))); opacity: 0; }
+        }
+
+        .container {
+            position: relative;
+            z-index: 2;
+            max-width: 600px;
+            margin: 50px auto;
+            background: rgba(0, 0, 0, 0.6);
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 0 15px rgba(255, 255, 255, 0.3);
+            transition: transform 0.3s;
+        }
+        .container:hover { transform: scale(1.02); }
+        img.avatar {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            transition: transform 0.3s;
+            border: 3px solid #fff;
+        }
+        img.avatar:hover { transform: scale(1.1); }
+        h1 { font-size: 28px; margin: 10px 0; letter-spacing: 2px; text-shadow: 2px 2px 10px rgba(255,255,255,0.5); }
+        .links a { display:flex; align-items:center; justify-content:center; gap:8px; margin:10px 0; padding:12px; color:#fff; text-decoration:none; font-weight:bold; border-radius:8px; transition:background .3s, transform .2s; background: rgba(255,255,255,0.15);} 
+        .links a:hover { background: rgba(255,255,255,0.35); transform: scale(1.05);} 
+        .links img.icon { width:24px; height:24px; }
+        .gmail, .phone { margin-top:20px; font-size:18px; font-weight:bold; background: rgba(255,255,255,0.2); display:inline-block; padding:10px 15px; border-radius:8px; }
+        .phone a { color:#fff; text-decoration:none; } .phone a:hover { text-decoration:underline; }
+    </style>
+</head>
+<body>
+
+    <audio id="bg-music" preload="auto">
+        <source src="https://cdn.pixabay.com/download/audio/2023/03/13/audio_5f03f65c2a.mp3?filename=hongkong1-cover.mp3" type="audio/mpeg">
+        Trình duyệt của bạn không hỗ trợ phát nhạc.
+    </audio>
+
+    <script>
+        const audio = document.getElementById('bg-music');
+        audio.volume = 0.4;
+
+        document.body.addEventListener('click', () => {
+            if (audio.paused) {
+                audio.play();
+            }
+        }, { once: true });
+
+        const createFloatingElements = () => {
+            const container = document.body;
+            for (let i = 0; i < 20; i++) {
+                const heart = document.createElement('div');
+                heart.className = 'heart';
+                heart.style.left = Math.random() * 100 + '%';
+                heart.style.setProperty('--x-dir', Math.random() > 0.5 ? 1 : -1);
+                heart.style.setProperty('--y-dir', Math.random() > 0.5 ? 1 : -1);
+                heart.style.animationDelay = Math.random() * 15 + 's';
+                container.appendChild(heart);
+
+                const text = document.createElement('div');
+                text.className = 'floating-text';
+                text.innerText = 'ᵀʰᵘ ᵀʰᵘʸ';
+                text.style.left = Math.random() * 100 + '%';
+                text.style.setProperty('--x-dir', Math.random() > 0.5 ? 1 : -1);
+                text.style.setProperty('--y-dir', Math.random() > 0.5 ? 1 : -1);
+                text.style.animationDelay = Math.random() * 18 + 's';
+                container.appendChild(text);
+            }
+        };
+        window.onload = createFloatingElements;
+    </script>
+
+    <div class="container">
+        <img class="avatar" src="z7038734822635_081ca5711eb8dbee2ea995f095f8a046.jpg" alt="Ảnh đại diện của Aiu">
+        <h1>Vu Manh Duy</h1>
+        <h2>Liên hệ</h2>
+        <div class="links">
+            <a href="https://www.tiktok.com/@nuadiemy" target="_blank"><img class="icon" src="https://cdn-icons-png.flaticon.com/512/3046/3046126.png" alt="TikTok">TikTok</a>
+            <a href="https://www.facebook.com/share/1A1pwT6Qnh/" target="_blank"><img class="icon" src="https://cdn-icons-png.flaticon.com/512/733/733547.png" alt="Facebook">Facebook</a>
+            <a href="https://www.instagram.com/vmd147/profilecard/?igsh=cGNsZWdiZjJhZ2hj" target="_blank"><img class="icon" src="https://cdn-icons-png.flaticon.com/512/2111/2111463.png" alt="Instagram">Instagram</a>
+            <a href="https://www.threads.net/@vmd147" target="_blank"><img class="icon" src="https://cdn-icons-png.flaticon.com/512/10835/10835099.png" alt="Threads">Threads</a>
+        </div>
+        <div class="gmail">Gmail: duyvu8833@gmail.com</div>
+        <div class="phone"><a href="https://zalo.me/0397303288" target="_blank">SĐT: 0397303288</a></div>
+    </div>
+</body>
+</html>
